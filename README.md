@@ -25,11 +25,17 @@ docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync m
   
 At the first start (when you don't define a key), the start script generates a new bittorrent key
 
-You can check this generated key with `docker logs simplesync` command:
+You can check this generated key with `docker logs simplesync` command or cat a file:
 
 Example:
 ```
 PLEASE COPY THIS BTSYNC KEY to the other hosts: AGDEDBKGWD7HOJJF6BUHSVU44Z5UBNZ46
+```
+
+OR
+
+```
+docker exec -ti simplesync cat /etc/btsync.key
 ```
 
 2nd, 3rd... container:
