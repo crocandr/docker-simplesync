@@ -9,7 +9,7 @@ This container can sync only one folder among other containers.
 ## Build
 
 ```
-docker build -t my/simplesync .
+docker build -t croc/simplesync .
 ```
 
 ## Run
@@ -17,7 +17,7 @@ docker build -t my/simplesync .
 If you don't have any key, but you have a folder, you can run this container without `KEY`:
 
 ```
-docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync my/simplesync /opt/start.sh
+docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync croc/simplesync /opt/start.sh
 ```
 
   - the container syncronize the `/srv/sync` folder in the container among the other simplesync containers 
@@ -43,7 +43,7 @@ docker exec -ti simplesync cat /etc/btsync.key
 You have to define at start the generated (or and old ) key for sync:
 
 ```
-docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync -e KEY=AGDEDBKGWD7HOJJF6BUHSVU44Z5UBNZ46 my/simplesync /opt/start.sh
+docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync -e KEY=AGDEDBKGWD7HOJJF6BUHSVU44Z5UBNZ46 croc/simplesync /opt/start.sh
 ```
 
 ## Mode
@@ -57,7 +57,7 @@ You can change Bittorrent Sync mode with these params:
 Example:
 
 ```
-docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync -e KEY=AGDEDBKGWD7HOJJF6BUHSVU44Z5UBNZ46 -e MODE=ro my/simplesync /opt/start.sh
+docker run -tid --name=simplesync --net=host -v /home/myuser/myfiles:/srv/sync -e KEY=AGDEDBKGWD7HOJJF6BUHSVU44Z5UBNZ46 -e MODE=ro croc/simplesync /opt/start.sh
 ```
 
 You have to define a normal RW key to the container generates a RO or a Encrpyted key.
