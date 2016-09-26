@@ -1,4 +1,4 @@
-# BtSync based sync container
+# Resilio (aka Bittorent Sync) based sync container
 
 This container can sync only one folder among other containers.  
 

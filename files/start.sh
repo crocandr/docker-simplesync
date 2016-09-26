@@ -7,12 +7,12 @@ if [ ! -z $KEY ]
 then
   key="$KEY"
 else
-  key="$( /opt/btsync/btsync --generate-secret )"
+  key="$( /opt/btsync/rslsync --generate-secret )"
 fi
 
 case $MODE in
   "ro")
-    rokey="$( /opt/btsync/btsync --get-ro-secret $KEY )"
+    rokey="$( /opt/btsync/rslsync --get-ro-secret $KEY )"
     if [ ! -z $rokey ]
     then
       echo "Generated ReadOnly KEY: $rokey"
@@ -24,7 +24,7 @@ case $MODE in
     fi
     ;;
   "encrypt")
-    tmpkey="$( /opt/btsync/btsync --get-ro-secret $KEY )"
+    tmpkey="$( /opt/btsync/rslsync --get-ro-secret $KEY )"
     enckey=$( echo $tmpkey | cut -c-33 | sed -r "s/^(.{1})/F/" )
     if [ ! -z $enckey ]
     then
@@ -51,6 +51,6 @@ sed -i s@--SRVNAME--@$HOSTNAME@g /etc/btsync.conf
 #echo -e "\n\nPLEASE COPY THIS BTSYNC KEY to the other hosts: $key \n\n"
 echo $key >> /etc/btsync.key
 
-/opt/btsync/btsync --storage /opt/btsync/config --config /etc/btsync.conf --nodaemon
+/opt/btsync/rslsync --storage /opt/btsync/config --config /etc/btsync.conf --nodaemon
 
 #/bin/bash
